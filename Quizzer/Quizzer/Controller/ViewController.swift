@@ -13,13 +13,14 @@ class ViewController: UIViewController {
     // initialize variables
     var button : UIButton?
     var label : UILabel?
-    var progressBar : UIProgressView?
-    var scoreLabel : UILabel?
-    var questionLabel : UITextView?
+    var scoreLabel = UILabel.init()
+    var questionLabel = UITextView.init()
+    var progressBar = UIProgressView.init( )
     var allQuestions = QuestionBank()
     var pickedAnswer : Bool = false
     var score : Int = 0
     var counter : Int = 0
+    
 
 
     override func viewDidLoad() {
@@ -123,9 +124,12 @@ class ViewController: UIViewController {
         //            blue: 0x35/255,
         //            alpha: 1.0)
         //        self.view.addSubview(progressBar!)
-        let progressBarFrame : CGRect = CGRect(x: self.view.frame.size.width/2 - (self.view.frame.size.width/2 - 20), y: 65, width: self.view.frame.size.width - 40, height: 2)
-        let progressBar : UIProgressView = UIProgressView.init(frame: progressBarFrame)
+
+//        let progressBarFrame : CGRect = CGRect(x: self.view.frame.size.width/2 - (self.view.frame.size.width/2 - 20), y: 65, width: self.view.frame.size.width - 40, height: 2)
+//        let progressBar : UIProgressView = UIProgressView.init(frame: progressBarFrame)
+        
         //        progressBar.progress = Float(score / allQuestions.list.count)
+        progressBar.frame = CGRect(x: self.view.frame.size.width/2 - (self.view.frame.size.width/2 - 20), y: 65, width: self.view.frame.size.width - 40, height: 2)
         progressBar.trackTintColor = UIColor.lightGray
         progressBar.progressTintColor = UIColor.red
         self.view.addSubview(progressBar)
@@ -135,7 +139,7 @@ class ViewController: UIViewController {
     func setUpScoreLabel() {
         
         // init
-        let scoreLabel = UILabel.init()
+//        let scoreLabel = UILabel.init()
         scoreLabel.frame = CGRect(x:20,y:100,width:100,height: 24)
         scoreLabel.text = "\(score)/\(allQuestions.list.count)"
         scoreLabel.font = UIFont.systemFont(ofSize: 24)
@@ -147,7 +151,7 @@ class ViewController: UIViewController {
     func setUpQuestionLabel() {
         
         // init
-        let questionLabel = UITextView.init()
+//        let questionLabel = UITextView.init()
         questionLabel.frame = CGRect(x:20,y:170,width:self.view.frame.size.width - 40,height: 100)
         questionLabel.font = UIFont.systemFont(ofSize: 16)
         //        questionLabel.numberOfLines = 0
@@ -179,16 +183,16 @@ class ViewController: UIViewController {
     
     func updateUI() {
         
-        scoreLabel?.text = String("\(score)/\(allQuestions.list.count)")
+        scoreLabel.text = String("\(score)/\(allQuestions.list.count)")
         print("\(score)/\(allQuestions.list.count)")
-        progressBar?.progress = Float(score / allQuestions.list.count)
+        progressBar.progress = (Float(score / allQuestions.list.count))
         
     }
     
     func nextQuestion() {
         
         if counter < allQuestions.list.count {
-            questionLabel?.text = allQuestions.list[counter].questionText
+            questionLabel.text = allQuestions.list[counter].questionText
             print("next question: \(allQuestions.list[counter].questionText)")
         } else {
             print ("end of quiz")
