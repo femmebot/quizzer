@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     var label : UILabel?
     var scoreLabel = UILabel.init()
     var questionLabel = UITextView.init()
-    var progressBar = UIProgressView.init( )
+    let progressBarBackground = UIView.init()
+    var progressBar = UIView.init()
     var allQuestions = QuestionBank()
     var pickedAnswer : Bool = false
     var score : Int = 0
@@ -117,22 +118,29 @@ class ViewController: UIViewController {
     func setUpProgressBar() {
         
         // init
-        //        progressBar = UIView(frame: CGRect(x: (self.view.frame.size.width/2) - (self.view.frame.size.width/2 - 20), y: 75, width: self.view.frame.size.width - 40, height: 6))
-        //        progressBar?.backgroundColor = UIColor(
-        //            red: 0xff/255,
-        //            green: 0x52/255,
-        //            blue: 0x35/255,
-        //            alpha: 1.0)
-        //        self.view.addSubview(progressBar!)
+        let progressBarBackground = UIView(frame: CGRect(x: (self.view.frame.size.width/2) - (self.view.frame.size.width/2 - 20), y: 68, width: self.view.frame.size.width - 40, height: 2))
+        progressBar = UIView(frame: CGRect(x: (self.view.frame.size.width/2) - (self.view.frame.size.width/2 - 20), y: 68, width: self.view.frame.size.width - 40, height: 2))
+        progressBarBackground.backgroundColor = UIColor(
+            red: 0xee/255,
+            green: 0xee/255,
+            blue: 0xee/255,
+            alpha: 1.0)
+        progressBar.backgroundColor = UIColor(
+            red: 0xff/255,
+            green: 0x52/255,
+            blue: 0x35/255,
+            alpha: 1.0)
+        self.view.addSubview(progressBarBackground)
+        self.view.addSubview(progressBar)
 
 //        let progressBarFrame : CGRect = CGRect(x: self.view.frame.size.width/2 - (self.view.frame.size.width/2 - 20), y: 65, width: self.view.frame.size.width - 40, height: 2)
 //        let progressBar : UIProgressView = UIProgressView.init(frame: progressBarFrame)
         
         //        progressBar.progress = Float(score / allQuestions.list.count)
-        progressBar.frame = CGRect(x: self.view.frame.size.width/2 - (self.view.frame.size.width/2 - 20), y: 65, width: self.view.frame.size.width - 40, height: 2)
-        progressBar.trackTintColor = UIColor.lightGray
-        progressBar.progressTintColor = UIColor.red
-        self.view.addSubview(progressBar)
+//        progressBar.frame = CGRect(x: self.view.frame.size.width/2 - (self.view.frame.size.width/2 - 20), y: 65, width: self.view.frame.size.width - 40, height: 2)
+//        progressBar.trackTintColor = UIColor.lightGray
+//        progressBar.progressTintColor = UIColor.red
+//        self.view.addSubview(progressBar)
         
     }
     
@@ -185,7 +193,11 @@ class ViewController: UIViewController {
         
         scoreLabel.text = String("\(score)/\(allQuestions.list.count)")
         print("\(score)/\(allQuestions.list.count)")
-        progressBar.progress = (Float(score / allQuestions.list.count))
+        
+//        progressBar.progress = (Float(score / allQuestions.list.count))
+        
+        progressBar.frame.size.width = ((view.frame.size.width - 40) / CGFloat(allQuestions.list.count)) * CGFloat(counter)
+
         
     }
     
