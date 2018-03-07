@@ -90,22 +90,22 @@ class ViewController: UIViewController {
         // target
         button?.addTarget(self, action: #selector(answerPressed(sender:)), for: UIControlEvents.touchUpInside)
         
-        // background color #f1f0f0
+        // background color #e6e6e6
         // button?.backgroundColor = UIColor.lightGray
         button?.backgroundColor = UIColor(
-            red: 0xf1/255,
-            green: 0xf0/255,
-            blue: 0xf0/255,
+            red: 0xe6/255,
+            green: 0xe6/255,
+            blue: 0xe6/255,
             alpha: 1.0)
         
         // border #ff5235
         button?.layer.cornerRadius = 5
-        //        button?.layer.borderWidth = 1
-        //        button?.layer.borderColor = UIColor(
-        //            red: 0xff/255,
-        //            green: 0x52/255,
-        //            blue: 0x35/255,
-        //            alpha: 1.0).cgColor
+//        button?.layer.borderWidth = 1
+//        button?.layer.borderColor = UIColor(
+//            red: 0xff/255,
+//            green: 0x52/255,
+//            blue: 0x35/255,
+//            alpha: 1.0).cgColor
         
         // image
         // button?.setImage(UIImage.init(named: "image.png"), for: UIControlState.normal)
@@ -146,8 +146,6 @@ class ViewController: UIViewController {
     
     func setUpScoreLabel() {
         
-        // init
-//        let scoreLabel = UILabel.init()
         scoreLabel.frame = CGRect(x:20,y:100,width:100,height: 24)
         scoreLabel.text = "\(score)/\(allQuestions.list.count)"
         scoreLabel.font = UIFont.systemFont(ofSize: 24)
@@ -158,11 +156,8 @@ class ViewController: UIViewController {
     
     func setUpQuestionLabel() {
         
-        // init
-//        let questionLabel = UITextView.init()
         questionLabel.frame = CGRect(x:20,y:170,width:self.view.frame.size.width - 40,height: 100)
         questionLabel.font = UIFont.systemFont(ofSize: 16)
-        //        questionLabel.numberOfLines = 0
         questionLabel.textColor = UIColor.black
         
         let firstQuestion = allQuestions.list[counter]
